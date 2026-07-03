@@ -1,55 +1,36 @@
-require('dotenv').config()
-const express = require('express')
-const { sequelize } = require('./models')
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors'); // optional
+const logger = require('./middlewares/logger.middleware');
+const errorHandler = require('./middlewares/error.middleware');
 
-const logger = require('./middlewares/logger.middleware')
-const errorHandler = require('./middlewares/error.middleware')
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const arbitreRoutes = require('./')
-const matchRoutes = require('')
-const affectationRoutes = require('')
 
-const app = express()
-const PORT = process.env.PORT || 3000
+app.use(cors());
+app.use(express.json());
+app.use(logger);
 
-app.use(express.json())
+const arbitreRoutes = require('./routes/arbitre.routes');
+const matchRoutes = require('./routes/match.routes');
+const affectationRoutes = require('./routes/affectation.routes');
 
-app.use('/arbitres', arbitreRoutes)
-app.use('/matches', matchRoutes)
-app.use('/affectations', affectationRoutes)
+app.use('/api/arbitres', arbitreRoutes);
+app.use('/api/matchs', matchRoutes);
+app.use('/api/affectations', affectationRoutes);
 
-app.get('/', (req, res) => {
-    res.send({
-        message: 'FIFA world Cup 2026 - Referee Management API',
-        version: '1.0.0',
-        endpoint: {
-            arbitres: '/arbitres',
-            matches: '/matches',
-            affectations: '/affectations',
-            stats: '/affectations/stats/total'
-        }
-    })
-})
+app.use(errorHandler);
 
-app.use((req, res) => {
-    res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` })
-})
+const { sequelize } = require('./models/index');
 
-app.use(errorHandler)
-
-sequelize
-    .authenticate()
-    .then(() =>{
-        console.log('PostgresSQL connection has been established successfully.')
-        return sequelize.sync({ alter: true })
-    })
-    .then(() => {
-        console.log('Database synchronized successfully.')
-        app.listen(PORT, () => {
-            console.log('Server is running on http://localhost:${PORT}')
-        })
-    })
-    .catch((err) => {
-        console.error('Error connecting to the database:', err.message)
-        process.exit(1)
-    })
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log('Database synced successfully.');
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('Unable to sync database:', err);
+  });
