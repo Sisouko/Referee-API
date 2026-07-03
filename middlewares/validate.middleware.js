@@ -11,7 +11,7 @@ const validateArbitre = (req, res, next) => {
   if (statut && !['actif','suspendu','blesse','retraite'].includes(statut)) {
     errors.push('statut must be one of: actif, suspendu, blesse, retraite');
   }
-  // Validate enums (optional but good)
+
   const validConfederations = ['UEFA','CONMEBOL','CAF','AFC','CONCACAF','OFC'];
   if (confederation && !validConfederations.includes(confederation)) {
     errors.push('confederation must be one of: ' + validConfederations.join(', '));
