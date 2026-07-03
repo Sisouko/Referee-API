@@ -11,6 +11,7 @@
         "equipe",
         "Exterieur",
         "Groupes",
+        "Hote",
         "matchs",
         "nationalite",
         "pgdata",
@@ -19,6 +20,7 @@
         "retraite",
         "stade",
         "statut",
-        "suspendu"
+        "suspendu",
+        "ville"
     ]
 }
