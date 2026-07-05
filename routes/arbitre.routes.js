@@ -9,7 +9,7 @@ router.route('/')
      .post(validateArbitre, arbitreController.createArbitre)
 
 
-router.route('/id:')
+router.route('/:id')
      .get(arbitreController.getArbitreById)
      .put(validateArbitre, arbitreController.updateArbitre)
      .delete(arbitreController.deleteArbitre)

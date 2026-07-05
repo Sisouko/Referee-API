@@ -1,7 +1,8 @@
 const sequelize = require('../config/database')
-const Arbitre = require('./arbitre.model')
-const Match = require('./match.model')
-const Affectation = require('./affectation.model')
+
+const Arbitre = require('./arbitre.model') (sequelize)
+const Match = require('./match.model') (sequelize)
+const Affectation = require('./affectation.model') (sequelize)
 
 Arbitre.belongsToMany(Match, {
     through: Affectation,

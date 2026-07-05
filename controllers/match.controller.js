@@ -1,8 +1,8 @@
 const { Match, Arbitre } = require('../models/index')
 
-exports.getAllMatches = async (req, res, next) => {
-    try { 
-        const matches = await Match.finAll()
+exports.getAllMatchs = async (req, res, next) => {
+    try {
+        const matches = await Match.findAll()
         res.status(200).json(matches)
     } catch (err) {
         next (err)
