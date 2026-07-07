@@ -1,0 +1,31 @@
+erDiagram
+    ARBITRE ||--o{ AFFECTATION : "possède"
+    MATCH ||--o{ AFFECTATION : "possède"
+
+    ARBITRE {
+        integer id PK
+        string nom
+        string prenom
+        string nationalite
+        enum confederation
+        enum categorie
+        integer experience
+        enum statut
+    }
+
+    MATCH {
+        integer id PK
+        string equipeDomicile
+        string equipeExterieur
+        string stade
+        string villeHote
+        date dateMatch
+        enum phase
+    }
+
+    AFFECTATION {
+        integer id PK
+        integer arbitreId FK
+        integer matchId FK
+        enum role
+    }
