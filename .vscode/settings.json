@@ -1,8 +1,13 @@
 {
     "cSpell.words": [
+        "Accès",
         "actif",
+        "Ajoutez",
         "arbitre",
         "arbitres",
+        "Attendu",
+        "authentifié",
+        "Autorises",
         "blesse",
         "categorie",
         "commissaire",
@@ -13,16 +18,23 @@
         "Exterieur",
         "Groupes",
         "Hote",
+        "invalide",
+        "manquant",
         "matchs",
         "nationalite",
         "pgdata",
         "possède",
         "prenom",
         "reftech",
+        "refusé",
+        "requis",
         "retraite",
+        "Rôle",
         "stade",
         "statut",
         "suspendu",
-        "ville"
+        "Utilisateur",
+        "ville",
+        "Votre"
     ]
 }
