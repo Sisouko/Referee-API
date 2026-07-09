@@ -18,3 +18,24 @@ function authenticate(req, res, next) {
         })
     }
     }
+
+
+    const token = parts[1]
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        req.user = decoded 
+        next ()
+    } 
+    
+    catch (err){
+        
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ Error: 'Token expiré. Reconnectez-vous.'})
+        }
+        return res.status(401).json({
+            Error: 'Token invalide.'
+        })
+    }
+
+    module.exports = authenticate
