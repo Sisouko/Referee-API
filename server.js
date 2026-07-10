@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors'); // optional
+const cors = require('cors'); 
 const logger = require('./middlewares/logger.middleware');
 const errorHandler = require('./middlewares/error.middleware');
 
@@ -15,6 +15,8 @@ app.use(logger);
 const arbitreRoutes = require('./routes/arbitre.routes');
 const matchRoutes = require('./routes/match.routes');
 const affectationRoutes = require('./routes/affectation.routes');
+const authRoutes = require('./routes/auth.routes');
+app.use('/auth', authRoutes);
 
 app.use('/api/arbitres', arbitreRoutes);
 app.use('/api/matchs', matchRoutes);

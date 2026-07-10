@@ -8,5 +8,8 @@ const router = express.Router()
     router.post('/register', authenticate, authorize('admin'), authController.register)
     router.post('/login', authController.login)
     router.get('/me', authenticate, authController.me)
+    router.post('/register', authController.register)
+
+
 
     module.exports= router
